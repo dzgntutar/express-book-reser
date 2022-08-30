@@ -11,7 +11,7 @@
                             <h2>Login</h2>
                         </div>
                         <div class="card-body">
-                            <form Model="@user">
+                            <form action="/user/login" method="post">
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input type="email" class="form-control"></input>
@@ -21,7 +21,7 @@
                                     <input type="password" class="form-control" </input>
                                 </div>
                                 <div class="form-group mt-2 d-flex  justify-content-end">
-                                    <button>Login</button>
+                                    <input class="btn btn-primary" type="submit" value="Login" />
                                 </div>
                             </form>
                         </div>
