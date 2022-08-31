@@ -8,7 +8,11 @@ userRouter.get("/", async (req, res) => {
   res.send(users);
 });
 
-userRouter.post("/", async (req, res) => {
+userRouter.get("/signin", async (req, res) => {
+  res.render("signin");
+});
+
+userRouter.post("/signin", async (req, res) => {
   try {
     User.create(req.body);
     res.render("/user");
