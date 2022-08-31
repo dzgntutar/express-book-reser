@@ -13,9 +13,11 @@ userRouter.get("/signin", async (req, res) => {
 });
 
 userRouter.post("/signin", async (req, res) => {
+  console.log(req.body);
   try {
     User.create(req.body);
-    res.render("/user");
+
+    res.redirect("/user/login");
   } catch (error) {
     res.status(404).render("error");
   }
@@ -27,8 +29,6 @@ userRouter.get("/login", (req, res) => {
 
 userRouter.post("/login", (req, res) => {
   const { email, password } = req.body;
-
-  console.log(email, password);
 
   let user = User.findOne(email, password);
   if (user) {
