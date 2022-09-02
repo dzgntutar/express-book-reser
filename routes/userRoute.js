@@ -1,10 +1,12 @@
 import express from "express";
 import User from "../models/userModel.js";
 import Jwt from "jsonwebtoken";
+import { JWT_SECRET_KEY } from "../utils/const.js";
+import { checkToken } from "../middlewares/authMiddleware.js";
 
 const userRouter = express.Router();
 
-userRouter.get("/", async (req, res) => {
+userRouter.get("/", checkToken, async (req, res) => {
   let users = await User.find({});
   res.send(users);
 });
@@ -37,7 +39,7 @@ userRouter.post("/login", async (req, res) => {
     if (user) {
       if (user.password == password) {
         let userId = user._id;
-        let token = Jwt.sign({ userId }, "mysecretkey123412341234", {
+        let token = Jwt.sign({ userId }, JWT_SECRET_KEY, {
           expiresIn: "1d",
         });
         res.cookie("jwt", token, {
