@@ -1,5 +1,6 @@
 import express from "express";
 import User from "../models/userModel.js";
+import Jwt from "jsonwebtoken";
 
 const userRouter = express.Router();
 
@@ -27,14 +28,41 @@ userRouter.get("/login", (req, res) => {
   res.status(200).render("login");
 });
 
-userRouter.post("/login", (req, res) => {
-  const { email, password } = req.body;
+userRouter.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-  let user = User.findOne(email, password);
-  if (user) {
-    res.status(200).redirect("/dashboard");
-  } else {
-    res.status(404).redirect("/login");
+    const user = await User.findOne({ email });
+
+    if (user) {
+      if (user.password == password) {
+        let userId = user._id;
+        let token = Jwt.sign({ userId }, "mysecretkey123412341234", {
+          expiresIn: "1d",
+        });
+        res.cookie("jwt", token, {
+          httpOnly: true,
+          maxAge: 1000 * 60 * 60 * 24,
+        });
+        res.redirect("/dashboard");
+      } else {
+        res.status(401).json({
+          succeded: false,
+          error: "Paswords are not matched",
+        });
+      }
+    } else {
+      res.status(401).json({
+        succeded: false,
+        error: "User not found",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      succeded: false,
+      error,
+    });
   }
 });
 
