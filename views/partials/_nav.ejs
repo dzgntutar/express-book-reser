@@ -3,17 +3,24 @@
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarCollapse">
             <ul class="navbar-nav  mb-2 mb-md-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/dashboard" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" href="/" aria-current="page" href="#">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user">Books</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/user/login" tabindex="-1" aria-disabled="true">Login</a>
-                </li>
+                <% if(userName) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/book">Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/logout">Logout</a>
+                    </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/user/login" tabindex="-1" aria-disabled="true">Login</a>
+                        </li>
+
+                        <% }%>
             </ul>
         </div>
     </div>

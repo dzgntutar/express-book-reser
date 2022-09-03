@@ -8,22 +8,7 @@ const userRouter = express.Router();
 
 userRouter.get("/", checkToken, async (req, res) => {
   let users = await User.find({});
-  res.send(users);
-});
-
-userRouter.get("/signin", async (req, res) => {
-  res.render("signin");
-});
-
-userRouter.post("/signin", async (req, res) => {
-  console.log(req.body);
-  try {
-    User.create(req.body);
-
-    res.redirect("/user/login");
-  } catch (error) {
-    res.status(404).render("error");
-  }
+  res.render("userList");
 });
 
 userRouter.get("/login", (req, res) => {
@@ -39,14 +24,17 @@ userRouter.post("/login", async (req, res) => {
     if (user) {
       if (user.password == password) {
         let userId = user._id;
-        let token = Jwt.sign({ userId }, JWT_SECRET_KEY, {
+        let userName = user.username;
+        let token = Jwt.sign({ userId, userName }, JWT_SECRET_KEY, {
           expiresIn: "1d",
         });
+
         res.cookie("jwt", token, {
           httpOnly: true,
           maxAge: 1000 * 60 * 60 * 24,
         });
-        res.redirect("/dashboard");
+
+        res.redirect("/");
       } else {
         res.status(401).json({
           succeded: false,
@@ -65,6 +53,28 @@ userRouter.post("/login", async (req, res) => {
       succeded: false,
       error,
     });
+  }
+});
+
+userRouter.get("/logout", (req, res) => {
+  res.cookie("jwt", "", {
+    maxAge: 1,
+  });
+  res.redirect("/");
+});
+
+userRouter.get("/signin", async (req, res) => {
+  res.render("signin");
+});
+
+userRouter.post("/signin", async (req, res) => {
+  console.log(req.body);
+  try {
+    User.create(req.body);
+
+    res.redirect("/user/login");
+  } catch (error) {
+    res.status(404).render("error");
   }
 });
 

@@ -6,6 +6,8 @@ import { userRouter } from "./routes/userRoute.js";
 import bookRoute from "./routes/bookRoute.js";
 import { dashboardRouter } from "./routes/dashboardRoute.js";
 
+import { getGeneralInfo } from "./middlewares/authMiddleware.js";
+
 const app = express();
 const port = 3000;
 
@@ -21,7 +23,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //routes
-app.use("/dashboard", dashboardRouter);
+app.use("*", getGeneralInfo);
+app.use("/", dashboardRouter);
 app.use("/user", userRouter);
 app.use("/book", bookRoute);
 

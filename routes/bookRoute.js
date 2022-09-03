@@ -1,11 +1,12 @@
 import express from "express";
 import Book from "../models/bookModel.js";
+import { checkToken } from "../middlewares/authMiddleware.js";
 
 const bookRoute = express.Router();
 
-bookRoute.route("/").get(async (req, res) => {
+bookRoute.route("/").get(checkToken, async (req, res) => {
   let books = await Book.find({});
-  res.send(books);
+  res.render("bookList");
 });
 
 export default bookRoute;
