@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
@@ -13,32 +13,32 @@ const BookSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, "Usern  name is required"],
+      required: [true, 'Usern  name is required'],
       lowercase: true,
     },
     author: {
       type: String,
-      required: [true, "Author is required"],
+      required: [true, 'Author is required'],
     },
     Publisher: {
       type: String,
-      required: [true, "Publisher area is required"],
+      required: [true, 'Publisher area is required'],
       unique: true,
     },
     PublishYear: {
       type: String,
-      required: [true, "PublishYear area is required"],
+      required: [true, 'PublishYear area is required'],
       unique: true,
     },
     Count: {
       type: Number,
-      required: [true, "Password area is required"],
-      minLength: [4, "At least 4 characters"],
+      required: [true, 'Password area is required'],
+      minLength: [4, 'At least 4 characters'],
     },
     users: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: 'User',
       },
     ],
   },
@@ -47,6 +47,6 @@ const BookSchema = new Schema(
   }
 );
 
-const Book = mongoose.model("Book", BookSchema);
+const Book = mongoose.model('Book', BookSchema);
 
 export default Book;
