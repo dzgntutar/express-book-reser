@@ -1,18 +1,16 @@
 {
-    "env": {
-      "browser": true,
-      "jest": true,
-      "es6": true
-    },
-    "plugins": ["import"],
-    "extends": "eslint:recommended",
-    "parserOptions": {
-      "ecmaVersion": "latest",
-      "sourceType": "module"
-    },
-    "rules": {
-      "no-console": ["warn","log"],
-      "no-eval": "error",
-      "import/first": "error"
-    }
+  "root": true,
+  "parserOptions": {
+       "ecmaVersion": 12,
+       "sourceType": "module"
+  },
+  "extends": ["eslint:recommended", "prettier"],
+  "env": { 
+       "es2021": true,
+       "node": true
+  },
+  "rules": {
+       "no-console": "off"
   }
+}
+ 
