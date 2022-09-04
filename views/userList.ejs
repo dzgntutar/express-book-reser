@@ -5,7 +5,32 @@
         <%- include("partials/_nav") %>
 
             <main class="container">
-                USER LIST
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">User Name</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Create Date</th>
+                            <th scope="col">Update Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (users) { %>
+                            <% users.forEach(function(user){ %>
+                                <tr>
+                                    <th scope="row"><%= user._id %></th>
+                                    <td><%= user.username %></td>
+                                    <td><%= user.name %></td>
+                                    <td><%= user.email %></td>
+                                    <td><%= user.createdAt %></td>
+                                    <td><%= user.updatedAt %></td>
+                                </tr>
+                            <% }); %>
+                        <% } %>
+                    </tbody>
+                </table>
             </main>
 
     </body>
