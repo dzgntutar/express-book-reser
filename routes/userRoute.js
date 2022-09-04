@@ -8,7 +8,7 @@ const userRouter = express.Router();
 
 userRouter.get('/', checkToken, async (req, res) => {
   let users = await User.find({});
-  res.render('userList',{users});
+  res.render('userList', { users });
 });
 
 userRouter.get('/login', (req, res) => {
@@ -17,7 +17,7 @@ userRouter.get('/login', (req, res) => {
 
 userRouter.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
+    let { email, password } = req.body;
 
     const user = await User.findOne({ email });
 

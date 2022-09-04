@@ -8,7 +8,7 @@ import { dashboardRouter } from './routes/dashboardRoute.js';
 
 import { getGeneralInfo } from './middlewares/authMiddleware.js';
 
-const app = express();
+let app = express();
 const port = 3000;
 
 //db connection

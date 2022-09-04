@@ -4,8 +4,8 @@ const connectToMongo = () => {
   mongoose
     .connect('mongodb://localhost:27017', {
       dbName: 'testDB',
-        user:'root',
-        pass:'example',
+      user: 'root',
+      pass: 'example',
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
