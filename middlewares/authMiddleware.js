@@ -2,7 +2,6 @@ import jwt from 'jsonwebtoken';
 import { JWT_SECRET_KEY } from '../utils/const.js';
 
 const checkToken = (req, res, next) => {
-  console.log('Check Token');
 
   try {
     let token = req.cookies.jwt;

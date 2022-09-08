@@ -21,58 +21,73 @@
                         <% if (users) { %>
                             <% users.forEach(function(user){ %>
                                 <tr>
-                                    <th scope="row"><%= user._id %></th>
-                                    <td><%= user.username %></td>
-                                    <td><%= user.name %></td>
-                                    <td><%= user.email %></td>
-                                    <td><%= user.createdAt %></td>
-                                    <td><%= user.updatedAt %></td>
-                                    <td></td>
+                                    <th scope="row">
+                                        <%= user._id %>
+                                    </th>
+                                    <td>
+                                        <%= user.username %>
+                                    </td>
+                                    <td>
+                                        <%= user.name %>
+                                    </td>
+                                    <td>
+                                        <%= user.email %>
+                                    </td>
+                                    <td>
+                                        <%= user.createdAt %>
+                                    </td>
+                                    <td>
+                                        <%= user.updatedAt %>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex flex-row">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modalEdit">Edit</button>
+                                            &nbsp;
+                                            <button type="button" class="btn btn-primary"
+                                                onclick="fnDelete('<%= user._id %>')">Delete</button>
+                                        </div>
+
+                                    </td>
                                 </tr>
-                            <% }); %>
-                        <% } %>
+                                <% }); %>
+                                    <% } %>
                     </tbody>
                 </table>
             </main>
-            
 
-            <div class="container mt-3">
-                <h3>Modal Example</h3>
-                <p>Click on the button to open the modal.</p>
-                
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-                  Open modal
-                </button>
-              </div>
-              
-              <!-- The Modal -->
-              <div class="modal" id="myModal">
+
+            <!-- The Modal -->
+            <div class="modal" id="modalEdit">
                 <div class="modal-dialog">
-                  <div class="modal-content">
-              
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                      <h4 class="modal-title">Modal Heading</h4>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modal Heading</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            Modal body..
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+
                     </div>
-              
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                      Modal body..
-                    </div>
-              
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    </div>
-              
-                  </div>
                 </div>
-              </div>
-  
+            </div>
 
     </body>
 
-    <%- include("partials/_footer") %>
+    <script>
+        let fnDelete = (id) => {
+            console.log(id)
+        }
+    </script>
 
-    
+    <%- include("partials/_footer") %>
