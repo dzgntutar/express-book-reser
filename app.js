@@ -11,6 +11,9 @@ import { getGeneralInfo } from './middlewares/authMiddleware.js';
 let app = express();
 const port = 3000;
 
+// Static Files
+app.use(express.static('public'));
+
 //db connection
 connectToMongo();
 
@@ -30,5 +33,5 @@ app.use('/book', bookRoute);
 
 //running
 app.listen(port, () => {
-  console.log(`App is running on  ${port}`);
+    console.log(`App is running on  ${port}`);
 });

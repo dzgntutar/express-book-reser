@@ -19,6 +19,14 @@ userRouter.get('/', checkToken, async (req, res) => {
     }
 });
 
+userRouter.get('/:id', checkToken, async (req, res) => {
+    try {
+        res.status(200).render('user');
+    } catch (error) {
+        res.status(400).render('user');
+    }
+});
+
 userRouter.get('/login', (req, res) => {
     let bResponse = BaseResponse.Success('Success');
     res.status(200).render('login', { bResponse });
