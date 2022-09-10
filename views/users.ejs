@@ -5,58 +5,31 @@
         <%- include("partials/_nav") %>
 
             <main class="container">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">User Name</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Create Date</th>
-                            <th scope="col">Update Date</th>
-                            <th scope="col">#</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- <% console.log(bResponse) %> -->
-                        <% if (bResponse && bResponse.Data) { %>
-                            <% bResponse.Data.forEach(function(user){ %>
-                                <tr>
-                                    <th scope="row">
-                                        <%= user._id %>
-                                    </th>
-                                    <td>
-                                        <%= user.username %>
-                                    </td>
-                                    <td>
-                                        <%= user.name %>
-                                    </td>
-                                    <td>
-                                        <%= user.email %>
-                                    </td>
-                                    <td>
-                                        <%= user.createdAt %>
-                                    </td>
-                                    <td>
-                                        <%= user.updatedAt %>
-                                    </td>
-                                    <td>
-                                        <div class="d-flex flex-row">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#modalEdit">Edit</button>
-                                            &nbsp;
-                                            <button type="button" class="btn btn-primary"
-                                                onclick="fnDelete('<%= user._id %>')">Delete</button>
-                                        </div>
+                <div class="d-flex flex-row flex-wrap">
+                    <% if (bResponse && bResponse.Data) { %>
+                        <% bResponse.Data.forEach(function(user){ %>
+                            <div class="col-sm-3">
+                                <div class="card text-center m-3 p-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= user.username %>
+                                        </h5>
+                                        <hr>
+                                        <h6 class="card-title">
+                                            Name: <%= user.name %>
+                                        </h6>
+                                        <h6>
+                                            Email: <%= user.email %>
+                                        </h6>
+                                        <a href="#" class="btn btn-primary">Go</a>
 
-                                    </td>
-                                </tr>
-                                <% }); %>
-                                    <% } %>
-                    </tbody>
-                </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                                <% } %>
+                </div>
             </main>
-
 
             <!-- The Modal -->
             <div class="modal" id="modalEdit">
