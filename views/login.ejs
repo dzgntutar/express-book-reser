@@ -4,9 +4,9 @@
 
         <%- include("partials/_nav") %>
 
-            <main class="container">
-                <div class="d-flex justify-content-center">
-                    <div class="card w-50 ">
+            <main class="container d-flex justify-content-center">
+                <div class=" d-flex justify-content-center flex-column w-50">
+                    <div class="card  ">
                         <div class="card-header text-center">
                             <h2>Login</h2>
                         </div>
@@ -18,7 +18,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input type="password" name="password" class="form-control" value="test123"> </input>
+                                    <input type="password" name="password" class="form-control" value="test123">
+                                    </input>
                                 </div>
                                 <div class="form-group mt-2 d-flex  justify-content-end">
                                     <div class="d-flex flex-column">
@@ -29,7 +30,17 @@
                             </form>
                         </div>
                     </div>
+                    <br>
+
+                    <% if (!bResponse.IsSuccess) { %>
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            <strong>Error!</strong>
+                            <%= bResponse.message %>
+                        </div>
+                        <% } %>
                 </div>
+
             </main>
 
     </body>

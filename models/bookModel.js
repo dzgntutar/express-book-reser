@@ -2,13 +2,6 @@ import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
-// public string Name { get; set; }
-//         public string PublishDate { get; set; }
-//         public int Type { get; set; }
-//         public string Author { get; set; }
-//         public string Publisher { get; set; }
-//         public short Count { get; set; }
-
 const BookSchema = new Schema(
   {
     name: {
@@ -35,12 +28,6 @@ const BookSchema = new Schema(
       required: [true, 'Password area is required'],
       minLength: [4, 'At least 4 characters'],
     },
-    users: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-      },
-    ],
   },
   {
     timestamps: true,

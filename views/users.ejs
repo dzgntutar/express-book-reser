@@ -18,8 +18,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% if (users) { %>
-                            <% users.forEach(function(user){ %>
+                        <!-- <% console.log(bResponse) %> -->
+                        <% if (bResponse && bResponse.Data) { %>
+                            <% bResponse.Data.forEach(function(user){ %>
                                 <tr>
                                     <th scope="row">
                                         <%= user._id %>
