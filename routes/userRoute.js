@@ -21,9 +21,16 @@ userRouter.get('/', checkToken, async (req, res) => {
 
 userRouter.get('/:id', checkToken, async (req, res) => {
     try {
-        res.status(200).render('user');
+        let id = req.params.id;
+
+        const user = await User.findById({ _id: id });
+
+        const bResponse = BaseResponse.Success('Success', user);
+
+        res.status(200).render('user', { bResponse });
     } catch (error) {
-        res.status(400).render('user');
+        const bResponse = BaseResponse.Success('User not found');
+        res.status(404).render('user', { bResponse });
     }
 });
 
