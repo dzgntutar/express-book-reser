@@ -2,6 +2,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import connectToMongo from './db.js';
 
+import { authRouter } from './routes/authRoute.js';
 import { userRouter } from './routes/userRoute.js';
 import bookRoute from './routes/bookRoute.js';
 import { dashboardRouter } from './routes/dashboardRoute.js';
@@ -27,9 +28,10 @@ app.use(cookieParser());
 
 //routes
 app.use('*', getGeneralInfo);
-app.use('/', dashboardRouter);
-app.use('/user', userRouter);
-app.use('/book', bookRoute);
+app.use('/index', dashboardRouter);
+app.use('/users', userRouter);
+app.use('/books', bookRoute);
+app.use('/', authRouter);
 
 //running
 app.listen(port, () => {
